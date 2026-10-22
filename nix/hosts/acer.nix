@@ -7,29 +7,42 @@
 
       modules = [
         inputs.self.nixosModules.acerHardware
+        inputs.home-manager.nixosModules.home-manager
+	inputs.self.nixosModules.sharedPackages
+	inputs.self.nixosModules.cosmicDesktop
 
         ({ pkgs, ... }: {
-	  nix.settings.experimental-features = [
-	    "nix-command"
-	    "flakes"
-	  ];
+          # Nix
+          nix.settings.experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
 
+          # Host and network
           networking.hostName = "acer";
           networking.networkmanager.enable = true;
 
           time.timeZone = "America/Los_Angeles";
 
+	  boot.loader.systemd-boot.configurationLimit = 3;
+
+          # User account
           users.users.smallv = {
             isNormalUser = true;
+	    shell = pkgs.fish;
             extraGroups = [
               "wheel"
               "networkmanager"
             ];
           };
 
-          # COSMIC desktop
-          services.displayManager.cosmic-greeter.enable = true;
-          services.desktopManager.cosmic.enable = true;
+          # Home Manager
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+	  home-manager.users.smallv = import ../../home/common.nix;
+
+	  programs.fish.enable = true;
 
           # Audio
           services.pipewire = {
@@ -37,17 +50,11 @@
             pulse.enable = true;
           };
 
-          # Applications
-          environment.systemPackages = with pkgs; [
-            brave
-            git
-            neovim
-            tree
-          ];
-
+          # Locale
           i18n.defaultLocale = "en_US.UTF-8";
           console.keyMap = "us";
 
+          # Preserve existing installation state
           system.stateVersion = "26.05";
         })
       ];

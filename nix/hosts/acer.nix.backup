@@ -1,0 +1,102 @@
+{ inputs, ... }:
+
+{
+  flake.nixosConfigurations.acer =
+    inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+
+      modules = [
+        inputs.self.nixosModules.acerHardware
+        inputs.home-manager.nixosModules.home-manager
+
+        ({ pkgs, ... }: {
+          # Nix
+          nix.settings.experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+
+          # Host and network
+          networking.hostName = "acer";
+          networking.networkmanager.enable = true;
+
+          time.timeZone = "America/Los_Angeles";
+
+          # User account
+          users.users.smallv = {
+            isNormalUser = true;
+            extraGroups = [
+              "wheel"
+              "networkmanager"
+            ];
+          };
+
+          # Home Manager
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          home-manager.users.smallv = {
+            home.username = "smallv";
+            home.homeDirectory = "/home/smallv";
+            home.stateVersion = "26.05";
+
+            programs.home-manager.enable = true;
+
+            # Shell
+            programs.fish = {
+              enable = true;
+              interactiveShellInit = ''
+                set -g fish_greeting
+              '';
+              shellAliases = {
+                ll = "eza -lah";
+                ls = "eza";
+                cat = "bat";
+              };
+            };
+
+            programs.starship.enable = true;
+            programs.zoxide.enable = true;
+            programs.atuin.enable = true;
+
+            # Terminal and file manager
+            programs.yazi.enable = true;
+
+            # User applications and CLI tools
+            home.packages = with pkgs; [
+              wezterm
+              eza
+              bat
+              fd
+              ripgrep
+            ];
+          };
+
+          # COSMIC desktop
+          services.displayManager.cosmic-greeter.enable = true;
+          services.desktopManager.cosmic.enable = true;
+
+          # Audio
+          services.pipewire = {
+            enable = true;
+            pulse.enable = true;
+          };
+
+          # System-wide applications
+          environment.systemPackages = with pkgs; [
+            brave
+            git
+            neovim
+            tree
+          ];
+
+          # Locale
+          i18n.defaultLocale = "en_US.UTF-8";
+          console.keyMap = "us";
+
+          # Preserve existing installation state
+          system.stateVersion = "26.05";
+        })
+      ];
+    };
+}
