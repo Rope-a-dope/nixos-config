@@ -9,6 +9,11 @@
         inputs.self.nixosModules.acerHardware
 
         ({ pkgs, ... }: {
+	  nix.settings.experimental-features = [
+	    "nix-command"
+	    "flakes"
+	  ];
+
           networking.hostName = "acer";
           networking.networkmanager.enable = true;
 
