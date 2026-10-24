@@ -1,4 +1,3 @@
-
 { inputs, ... }:
 {
   flake.nixosModules.sharedPackages =
@@ -9,7 +8,8 @@
         git
         neovim
         tree
-	fastfetch
+        fastfetch
+        podman
 
         # Terminal editors
         helix

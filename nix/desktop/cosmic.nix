@@ -8,6 +8,7 @@
     environment.cosmic.excludePackages = with pkgs; [
       cosmic-player
       cosmic-term
+      cosmic-store
     ];
   };
 }
