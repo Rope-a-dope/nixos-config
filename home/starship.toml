@@ -1,11 +1,20 @@
 add_newline = false
 command_timeout = 1000
-
-# Minimal left prompt; contextual information on the right.
-format = "$directory$character"
-right_format = "$git_branch$git_status$elixir$erlang$rust$nodejs$nix_shell$cmd_duration"
+scan_timeout = 10
 
 palette = "catppuccin_mocha"
+
+# Two-line lean prompt with a left frame.
+format = "$os $directory $git_branch$git_status$line_break$character"
+right_format = "$cmd_duration $time"
+
+[os]
+disabled = false
+style = "bold white"
+format = "[$symbol]($style) "
+
+[os.symbols]
+NixOS = ""
 
 [character]
 success_symbol = "[❯](bold green)"
@@ -14,50 +23,69 @@ vimcmd_symbol = "[❮](bold lavender)"
 
 [directory]
 style = "bold blue"
-format = "[$path]($style) "
-truncation_length = 3
-truncate_to_repo = true
-truncation_symbol = "…/"
+format = "[$path]($style)"
+truncation_length = 0
+truncate_to_repo = false
+home_symbol = "  ~"
+
 
 [git_branch]
-symbol = " "
-style = "green"
-format = "[$symbol$branch]($style) "
+symbol = "  "
+style = "lavender"
+format = "[$symbol](subtext0)[$branch]($style) "
+
 
 [git_status]
-style = "red"
-format = "[$all_status$ahead_behind]($style) "
+style = "subtext0"
+format = '([$all_status$ahead_behind]($style))'
+
+conflicted = "[=${count}](red bold) "
+ahead = "[⇡${count}](sky) "
+behind = "[⇣${count}](peach) "
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}](mauve) "
+untracked = "[?${count}](red) "
+stashed = "[≡${count}](overlay2) "
+modified = "[!${count}](yellow) "
+staged = "[+${count}](green) "
+renamed = "[»${count}](blue) "
+deleted = "[✘${count}](red) "
 
 [elixir]
 symbol = " "
 style = "mauve"
-format = "[$symbol$version]($style) "
+format = "[ · $symbol$version]($style)"
 
 [erlang]
 symbol = " "
 style = "peach"
-format = "[$symbol$version]($style) "
+format = "[ · $symbol$version]($style)"
 
 [rust]
 symbol = " "
 style = "peach"
-format = "[$symbol$version]($style) "
+format = "[ · $symbol$version]($style)"
 
 [nodejs]
 symbol = " "
 style = "green"
-format = "[$symbol$version]($style) "
+format = "[ · $symbol$version]($style)"
 
 [nix_shell]
-symbol = "❄ "
+symbol = " "
 style = "sky"
-format = "[$symbol$name]($style) "
+format = "[ · $symbol$name]($style)"
 heuristic = true
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "green"
+format = "[ $time]($style)"
 
 [cmd_duration]
 min_time = 2000
-style = "overlay1"
-format = "[took $duration]($style) "
+style = "green"
+format = "[  $duration]($style)"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
@@ -86,3 +114,59 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
+
+[palettes.everforest]
+rosewater = "#d3c6aa"
+flamingo = "#e67e80"
+pink = "#d699b6"
+mauve = "#d699b6"
+red = "#e67e80"
+maroon = "#e69875"
+peach = "#e69875"
+yellow = "#dbbc7f"
+green = "#a7c080"
+teal = "#83c092"
+sky = "#7fbbb3"
+sapphire = "#7fbbb3"
+blue = "#7fbbb3"
+lavender = "#d3c6aa"
+text = "#d3c6aa"
+subtext1 = "#9da9a0"
+subtext0 = "#859289"
+overlay2 = "#7a8478"
+overlay1 = "#6f7970"
+overlay0 = "#5c6a72"
+surface2 = "#4f585e"
+surface1 = "#475258"
+surface0 = "#3d484d"
+base = "#2d353b"
+mantle = "#272e33"
+crust = "#232a2e"
+
+[palettes.tokyonight]
+rosewater = "#f7768e"
+flamingo = "#ff9e64"
+pink = "#bb9af7"
+mauve = "#9d7cd8"
+red = "#f7768e"
+maroon = "#db4b4b"
+peach = "#ff9e64"
+yellow = "#e0af68"
+green = "#9ece6a"
+teal = "#73daca"
+sky = "#7dcfff"
+sapphire = "#2ac3de"
+blue = "#7aa2f7"
+lavender = "#bb9af7"
+text = "#c0caf5"
+subtext1 = "#a9b1d6"
+subtext0 = "#9aa5ce"
+overlay2 = "#565f89"
+overlay1 = "#414868"
+overlay0 = "#3b4261"
+surface2 = "#292e42"
+surface1 = "#24283b"
+surface0 = "#1f2335"
+base = "#1a1b26"
+mantle = "#16161e"
+crust = "#13131a"

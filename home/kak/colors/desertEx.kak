@@ -1,0 +1,50 @@
+# DesertEx — Kakoune port of mbbill/desertEx.vim
+# Original Vim theme by Ming Bai
+# Palette translated from the original Vim highlight definitions.
+
+# Editor UI
+set-face global Default             "rgb:bebebe,rgb:2b2b2b"
+set-face global PrimarySelection    "rgb:000000,rgb:ffff78"
+set-face global SecondarySelection  "rgb:bebebe,rgb:445599"
+set-face global PrimaryCursor       "rgb:000000,rgb:ffff00"
+set-face global SecondaryCursor     "rgb:000000,rgb:eeb422"
+set-face global LineNumbers         "rgb:cdaa7d,rgb:333333"
+set-face global LineNumberCursor    "rgb:ffff00,rgb:2b2b2b"
+set-face global MenuForeground      "rgb:ffffff,rgb:445599"
+set-face global MenuBackground      "rgb:bebebe,rgb:445599"
+set-face global MenuInfo            "rgb:87ceeb,rgb:445599"
+set-face global Information         "rgb:00ff7f,rgb:2b2b2b"
+set-face global Error               "rgb:ffffff,rgb:ff0000"
+set-face global StatusLine          "rgb:000000,rgb:c2bfa5"
+set-face global StatusLineMode      "rgb:000000,rgb:c2bfa5"
+set-face global StatusLineInfo      "rgb:bebebe,rgb:666666"
+set-face global StatusLineValue     "rgb:000000,rgb:eeb422"
+set-face global StatusCursor        "rgb:000000,rgb:ffff00"
+set-face global Prompt              "rgb:bebebe,rgb:333333"
+set-face global MatchingChar        "rgb:ffff00,rgb:2b2b2b+b"
+set-face global Whitespace           "rgb:666666"
+set-face global BufferPadding       "rgb:bebebe,rgb:333333"
+
+# Syntax highlighting
+set-face global Comment             "rgb:7ccd7c"
+set-face global Documentation       "rgb:7ccd7c"
+set-face global Keyword             "rgb:fcd38d+b"
+set-face global Control             "rgb:fcd38d+b"
+set-face global Operator            "rgb:fcd38d"
+set-face global String              "rgb:ff7878"
+set-face global Value               "rgb:ff7878"
+set-face global Number              "rgb:ff7878"
+set-face global Type                "rgb:ffa07a+b"
+set-face global Function            "rgb:87ceeb"
+set-face global Variable            "rgb:87ceeb"
+set-face global Module              "rgb:eea2ad"
+set-face global Attribute           "rgb:eea2ad"
+set-face global Builtin             "rgb:76eec6"
+set-face global Meta                "rgb:76eec6"
+set-face global Label               "rgb:fcd38d"
+
+# Diagnostics and special syntax
+set-face global DiagnosticError     "rgb:ffffff,rgb:ff0000"
+set-face global DiagnosticWarning   "rgb:fa8072"
+set-face global DiagnosticInfo      "rgb:87ceeb"
+set-face global DiagnosticHint      "rgb:2e8b57"

@@ -365,6 +365,8 @@ binds {
     Super+Return hotkey-overlay-title="Open a Terminal: WezTerm" { spawn "wezterm"; }
     Super+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+B hotkey-overlay-title="Open Browser: Brave" { spawn "brave"; }
+    Super+E hotkey-overlay-title="Open Doom Emacs" { spawn "emacsclient" "-c"; }
+    Super+Shift+S hotkey-overlay-title="Open Satty" { spawn-sh "noctalia msg screenshot-region --pipe-to-command --pipe-command 'satty -f -'"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.

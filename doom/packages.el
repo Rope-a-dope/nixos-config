@@ -51,3 +51,7 @@
 ;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
+(package! doom-themes)
+(package! catppuccin-theme)
+(package! heex-ts-mode)
+(package! elixir-ts-mode)

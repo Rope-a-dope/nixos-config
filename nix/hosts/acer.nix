@@ -8,8 +8,12 @@
       inputs.self.nixosModules.acerHardware
       inputs.home-manager.nixosModules.home-manager
       inputs.self.nixosModules.sharedPackages
+      inputs.self.nixosModules.podman
+      inputs.self.nixosModules.kakouneEditor
+      inputs.self.nixosModules.desktopPackages
       inputs.self.nixosModules.cosmicDesktop
       inputs.self.nixosModules.niriDesktop
+      inputs.self.nixosModules.fcitx5
 
       ({ pkgs, ... }: {
         # Nix
@@ -25,11 +29,6 @@
         time.timeZone = "America/Los_Angeles";
 
         boot.loader.systemd-boot.configurationLimit = 3;
-
-        virtualisation.containers.enable = true;
-        virtualisation.containers.registries.search = [
-          "docker.io"
-        ];
 
         systemd.tmpfiles.rules = [
           "d /var/lib/cosmic-greeter/.config/cosmic/com.system76.CosmicComp/v1 0755 cosmic-greeter cosmic-greeter -"
@@ -61,6 +60,8 @@
           imports = [
             ../../home/common.nix
             ../../home/desktop.nix
+            ../../home/cosmic.nix
+            ../../home/development.nix
           ];
         };
 

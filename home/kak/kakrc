@@ -1,0 +1,50 @@
+# Tree-sitter
+eval %sh{
+    kak-tree-sitter --daemonize --kakoune --init "${kak_session}" \
+        --with-highlighting --with-text-objects \
+        --config "$HOME/.config/kak-tree-sitter/config.toml"
+}
+
+# Language Server Protocol
+eval %sh{kak-lsp}
+lsp-enable
+
+# Tab: navigate snippet placeholders, otherwise insert a normal Tab
+map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Next snippet placeholder or Tab'
+
+# AutoPairs
+enable-auto-pairs
+
+# SmartTab: smart indentation and alignment
+hook global BufOpenFile .* smarttab
+hook global BufNewFile  .* smarttab
+
+# popup.kak
+evaluate-commands %sh{kak-popup init}
+
+# Theme
+colorscheme everforest
+
+# Normal mode: cool cyan cursor
+set-face global PrimaryCursor black,bright-cyan+F
+set-face global PrimaryCursorEol black,bright-cyan
+
+# Insert mode: warm yellow cursor
+hook global ModeChange (push|pop):.*:insert %{
+    set-face window PrimaryCursor black,bright-yellow+F
+    set-face window PrimaryCursorEol black,bright-yellow
+}
+
+# Restore normal-mode cursor faces when leaving insert mode
+hook global ModeChange (push|pop):insert:.* %{
+    unset-face window PrimaryCursor
+    unset-face window PrimaryCursorEol
+}
+
+# Editing defaults
+set-option global tabstop 2
+set-option global indentwidth 2
+set-option global scrolloff 5,5
+
+# Find file with fzf
+map global user f ':popup --title Find-file --kak-script %{edit %opt{popup_output}} -- fish -c "command find . -type f | fzf"<ret>'

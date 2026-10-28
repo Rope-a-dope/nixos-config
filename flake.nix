@@ -21,6 +21,9 @@
 
     tuios.url = "github:Gaurav-Gosain/tuios/v0.10.1";
     tuios.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Kakoune popup support
+    popup-kak.url = "github:enricozb/popup.kak";
   };
 
   outputs = inputs:

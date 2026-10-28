@@ -5,14 +5,6 @@
   home.homeDirectory = "/home/smallv";
   home.stateVersion = "26.05";
 
-  xdg.configFile."cosmic/com.system76.CosmicComp/v1/keyboard_config".text = ''
-    (
-      numlock_state: BootOn,
-    )
-  '';
-
-  xdg.configFile."wezterm/wezterm.lua".source = ./wezterm.lua;
-
   xdg.configFile."starship.toml".source = ./starship.toml;
 
   xdg.configFile."nvim".source =
@@ -23,12 +15,38 @@
     enable = true;
     interactiveShellInit = ''
       set -g fish_greeting
-      fish_add_path $HOME/.config/emacs/bin
+      set -gx EDITOR nvim
+      set -gx VISUAL nvim
     '';
+
     shellAliases = {
       ll = "eza -lah";
       ls = "eza";
       cat = "bat";
+      tree = "eza --tree";
+      grep = "rg";
+      find = "fd";
+      mkdir = "mkdir -p";
+    };
+
+    shellAbbrs = {
+      # Git
+      g = "git";
+      gs = "git status";
+      gd = "git diff";
+      ga = "git add";
+      gc = "git commit";
+      gl = "git log --oneline --graph --decorate";
+
+      # NixOS and Home Manager
+      nf = "nix flake";
+      nfc = "nix flake check";
+      nfu = "nix flake update";
+
+      # Navigation
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      c = "clear";
     };
   };
 
@@ -52,35 +70,23 @@
     enableFishIntegration = true;
   };
 
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   home.packages = with pkgs; [
     bat
     eza
     fd
     fzf
+    tmux
     ripgrep
-    gcc
-    gnumake
-    tree-sitter
-    stylua
-    lazygit
-    inputs.tuios.packages.${pkgs.stdenv.hostPlatform.system}.tuios
-    lua-language-server
-    wezterm
-    emacs
-    nerd-fonts.jetbrains-mono
-    symbola
-    nerd-fonts.symbols-only
-    discount
-    shellcheck
-    unzip
-    wget
-    beam29Packages.erlang
-    beam29Packages.elixir_1_20
-    beam29Packages.elixir-ls
-    beam29Packages.hex
-    beam29Packages.rebar3
-    inotify-tools
-    podman-compose
-    nodejs
+    satty
+    ncdu
+    dust
+    procs
+    jq
+    yq-go
   ];
 }
