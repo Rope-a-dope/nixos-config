@@ -1,5 +1,53 @@
 {
   "nodes": {
+    "claude-elixir-phoenix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792643069,
+        "narHash": "sha256-HZKcVSfu64PQcIE51fe6aLKG0O+WATwNEhkXsinLzmY=",
+        "owner": "oliver-kriska",
+        "repo": "claude-elixir-phoenix",
+        "rev": "f46b932fdca4e9e47e61b6af93d8ed12b40cb1ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oliver-kriska",
+        "repo": "claude-elixir-phoenix",
+        "type": "github"
+      }
+    },
+    "claude-marketplace-elixir": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768148683,
+        "narHash": "sha256-ZcBI8r4ySBtOO0B+fTnXX9+2xfbfkTTGkJ5nFTHtiv4=",
+        "owner": "bradleygolden",
+        "repo": "claude-marketplace-elixir",
+        "rev": "624d46be6c7a73ffb4e0def9a6455001ad0426df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bradleygolden",
+        "repo": "claude-marketplace-elixir",
+        "type": "github"
+      }
+    },
+    "claude-plugins-official": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793130704,
+        "narHash": "sha256-lmJbRtHsAN/rxqzm5hzxxu8lx+iiqRCtocJ7YET03Lg=",
+        "owner": "anthropics",
+        "repo": "claude-plugins-official",
+        "rev": "f8c5e7a1dcb71b10cb74586224b5401f3de5db28",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anthropics",
+        "repo": "claude-plugins-official",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1775236976,
@@ -344,6 +392,9 @@
     },
     "root": {
       "inputs": {
+        "claude-elixir-phoenix": "claude-elixir-phoenix",
+        "claude-marketplace-elixir": "claude-marketplace-elixir",
+        "claude-plugins-official": "claude-plugins-official",
         "flake-parts": "flake-parts",
         "herdr-nix": "herdr-nix",
         "home-manager": "home-manager",

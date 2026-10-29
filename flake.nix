@@ -24,6 +24,21 @@
 
     # Kakoune popup support
     popup-kak.url = "github:enricozb/popup.kak";
+
+    claude-plugins-official = {
+      url = "github:anthropics/claude-plugins-official";
+      flake = false;
+    };
+
+    claude-elixir-phoenix = {
+      url = "github:oliver-kriska/claude-elixir-phoenix";
+      flake = false;
+    };
+
+    claude-marketplace-elixir = {
+      url = "github:bradleygolden/claude-marketplace-elixir";
+      flake = false;
+    };
   };
 
   outputs = inputs:

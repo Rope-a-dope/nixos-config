@@ -1,5 +1,9 @@
 { config, pkgs, inputs, ... }:
 {
+  imports = [
+    ./claude-code.nix
+  ];
+
   xdg.configFile."doom".source =
     config.lib.file.mkOutOfStoreSymlink
       "${config.home.homeDirectory}/nixos-config/doom";
