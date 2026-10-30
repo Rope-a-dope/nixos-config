@@ -1,4 +1,5 @@
 { ... }:
+
 {
   flake.nixosModules.kakouneEditor = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [

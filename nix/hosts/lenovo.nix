@@ -6,6 +6,7 @@
 
     modules = [
       inputs.self.nixosModules.broadcomWifi
+      inputs.self.nixosModules.lenovoHardware
       inputs.home-manager.nixosModules.home-manager
       inputs.self.nixosModules.sharedPackages
       inputs.self.nixosModules.podman
@@ -31,6 +32,9 @@
         boot.loader.systemd-boot.configurationLimit = 3;
 
         systemd.tmpfiles.rules = [
+          "d /var/lib/cosmic-greeter/.config 0755 cosmic-greeter cosmic-greeter -"
+          "d /var/lib/cosmic-greeter/.config/cosmic 0755 cosmic-greeter cosmic-greeter -"
+          "d /var/lib/cosmic-greeter/.config/cosmic/com.system76.CosmicComp 0755 cosmic-greeter cosmic-greeter -"
           "d /var/lib/cosmic-greeter/.config/cosmic/com.system76.CosmicComp/v1 0755 cosmic-greeter cosmic-greeter -"
           "L+ /var/lib/cosmic-greeter/.config/cosmic/com.system76.CosmicComp/v1/keyboard_config - - - - /etc/cosmic-greeter-keyboard_config"
         ];
