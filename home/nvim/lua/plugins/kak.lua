@@ -1,6 +1,7 @@
 return {
   {
     "mirlge/kak.nvim",
+    enabled = false,
     version = "^7",
     event = "VeryLazy",
     opts = {

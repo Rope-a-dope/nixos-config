@@ -1,0 +1,30 @@
+# Elixir grammar — latest upstream
+[grammar.elixir.source.git]
+url = "https://github.com/elixir-lang/tree-sitter-elixir"
+pin = "cb32ccbe17c67037b09e31bf9beb22cdae6ed8e9"
+
+# Elixir queries — latest Helix master
+[language.elixir.queries]
+path = "runtime/queries/elixir"
+
+[language.elixir.queries.source.git]
+url = "https://github.com/helix-editor/helix"
+pin = "ba40e547426b0f9896c8bdc699a4ab11f2b37dbc"
+
+# HEEx grammar
+[grammar.heex.source.git]
+url = "https://github.com/phoenixframework/tree-sitter-heex"
+pin = "5842537f734d7c12685bf27d6005313e3e5a47a0"
+
+[grammar.heex]
+path = "src"
+compile_args = ["-c", "-fpic", "../parser.c", "-I", ".."]
+link_args = ["-shared", "-fpic", "parser.o", "-o", "heex.so"]
+
+# HEEx queries
+[language.heex.queries]
+path = "queries"
+
+[language.heex.queries.source.git]
+url = "https://github.com/phoenixframework/tree-sitter-heex"
+pin = "5842537f734d7c12685bf27d6005313e3e5a47a0"

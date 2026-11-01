@@ -1,14 +1,25 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./claude-code.nix
   ];
 
   xdg.configFile."doom".source =
-    config.lib.file.mkOutOfStoreSymlink
-      "${config.home.homeDirectory}/nixos-config/doom";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/doom";
 
-  xdg.configFile."kak".source = ./kak;
+  xdg.configFile."kak".source = pkgs.runCommand "kak-config" { } ''
+    cp -r ${./kak}/. $out
+    chmod -R u+w $out
+    ln -s ${pkgs.kakoune}/share/kak/autoload/rc $out/autoload/rc
+  '';
+
+  xdg.configFile."kak-tree-sitter/config.toml".source =
+    ./kak-tree-sitter/config.toml;
 
   services.emacs = {
     enable = true;

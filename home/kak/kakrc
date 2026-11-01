@@ -1,8 +1,7 @@
 # Tree-sitter
 eval %sh{
     kak-tree-sitter --daemonize --kakoune --init "${kak_session}" \
-        --with-highlighting --with-text-objects \
-        --config "$HOME/.config/kak-tree-sitter/config.toml"
+        --with-highlighting --with-text-objects
 }
 
 # Language Server Protocol
