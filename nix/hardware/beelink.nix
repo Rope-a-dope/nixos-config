@@ -26,5 +26,17 @@
           intel-media-driver
         ];
       };
+
+      fileSystems."/mnt/Backup" = {
+        device = "/dev/disk/by-uuid/8408e456-a2ef-4d59-9164-64e22e146cbf";
+        fsType = "ext4";
+        options = [ "nofail" ];
+      };
+
+      fileSystems."/mnt/Media" = {
+        device = "/dev/disk/by-uuid/88aee508-87e1-4985-a2f6-a02d5cd46f0b";
+        fsType = "ext4";
+        options = [ "nofail" ];
+      };
     };
 }
