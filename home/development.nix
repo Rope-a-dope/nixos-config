@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 {
@@ -18,8 +19,7 @@
     ln -s ${pkgs.kakoune}/share/kak/autoload/rc $out/autoload/rc
   '';
 
-  xdg.configFile."kak-tree-sitter/config.toml".source =
-    ./kak-tree-sitter/config.toml;
+  xdg.configFile."kak-tree-sitter/config.toml".source = ./kak-tree-sitter/config.toml;
 
   services.emacs = {
     enable = true;
@@ -42,7 +42,22 @@
     lazygit
     inputs.tuios.packages.${pkgs.stdenv.hostPlatform.system}.tuios
     lua-language-server
-    kakoune-lsp
+
+    (kakoune-lsp.overrideAttrs (old: rec {
+      version = "22.0.0";
+
+      src = pkgs.fetchFromGitHub {
+        owner = "kakoune-lsp";
+        repo = "kakoune-lsp";
+        tag = "v${version}";
+        hash = "sha256-G4L9FOS097U7pLpYTnsUF0FK7UjQ9oQRTtH0ifsL5Ks=";
+      };
+
+      cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+        inherit src;
+        hash = "sha256-QL2uE0hZtrZFJm3KpnTDXACjPY4gNefP76QjD0ZOLMo=";
+      };
+    }))
 
     emacs-pgtk
     discount

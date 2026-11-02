@@ -14,15 +14,30 @@ map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %
 # AutoPairs
 enable-auto-pairs
 
-# SmartTab: smart indentation and alignment
-hook global BufOpenFile .* smarttab
-hook global BufNewFile  .* smarttab
+# SmartTab: spaces for indentation and alignment
+hook global BufOpenFile .* expandtab
+hook global BufNewFile  .* expandtab
 
 # popup.kak
 evaluate-commands %sh{kak-popup init}
 
+# Editing defaults
+set-option global tabstop 2
+set-option global indentwidth 2
+set-option global scrolloff 2,2
+
 # Theme
 colorscheme everforest
+
+# Line numbers: absolute on cursor line, relative elsewhere
+add-highlighter global/ number-lines -relative -hlcursor -separator " "
+
+# Selection contrast
+set-face global PrimarySelection rgb:d3c6aa,rgb:475258
+set-face global SecondarySelection rgb:d3c6aa,rgb:3d484d
+
+# Highlight the current line number
+set-face global LineNumberCursor rgb:a7c080,default+b
 
 # Normal mode: cool cyan cursor
 set-face global PrimaryCursor black,bright-cyan+F
@@ -40,10 +55,25 @@ hook global ModeChange (push|pop):insert:.* %{
     unset-face window PrimaryCursorEol
 }
 
-# Editing defaults
-set-option global tabstop 2
-set-option global indentwidth 2
-set-option global scrolloff 5,5
+# Show indentation whitespace without visible dots, tabs, or line-break markers
+add-highlighter global/whitespace show-whitespaces -spc " " -tab "" -lf "" -nbsp ""
+
+# Highlight trailing whitespace
+set-face global TrailingWhitespace rgb:e67e80,rgb:3d484d
+add-highlighter global/trailing-whitespace regex \h+$ 0:TrailingWhitespace
+
+# Status line
+set-face global StatusLine rgb:d3c6aa,rgb:343f44
+set-face global StatusLineMode rgb:2d353b,rgb:a7c080+b
+set-face global StatusLineInfo rgb:d3c6aa,rgb:3d484d
+set-face global StatusLineValue rgb:dbbc7f,rgb:343f44
+
+# Search match highlighting
+set-face global SearchMatch rgb:2d353b,rgb:dbbc7f+b
+add-highlighter global/search dynregex '%reg{/}' 0:SearchMatch
+map global normal <a-backspace> ':set-register slash ""<ret>' -docstring 'Clear search highlighting'
+
+map global normal '#' ':comment-line<ret>' -docstring 'Toggle line comments'
 
 # Find file with fzf
 map global user f ':popup --title Find-file --kak-script %{edit %opt{popup_output}} -- fish -c "command find . -type f | fzf"<ret>'
