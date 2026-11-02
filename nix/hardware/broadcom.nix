@@ -3,7 +3,7 @@
 {
   flake.nixosModules.broadcomWifi = { config, pkgs, ... }: {
     nixpkgs.config.permittedInsecurePackages = [
-      "broadcom-sta-6.30.223.271-59-6.18.59"
+      "broadcom-sta-6.30.223.271-59-6.18.60"
     ];
 
     hardware.enableRedistributableFirmware = true;
