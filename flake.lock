@@ -84,6 +84,22 @@
         "type": "github"
       }
     },
+    "elephant-goldfish-model": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793349808,
+        "narHash": "sha256-1Zeby+nNVpDZDZr4BHj5RyWDe50Eck4SmWQPIFpBUOY=",
+        "owner": "google",
+        "repo": "elephant-goldfish-model",
+        "rev": "403d8881d62022490637d740657b33f01e321ea8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "google",
+        "repo": "elephant-goldfish-model",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -159,24 +175,6 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_2": {
-      "inputs": {
-        "systems": "systems_2"
-      },
-      "locked": {
         "lastModified": 1710146030,
         "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
@@ -215,24 +213,19 @@
         "type": "github"
       }
     },
-    "herdr-nix": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
+    "hallmark": {
+      "flake": false,
       "locked": {
-        "lastModified": 1791994266,
-        "narHash": "sha256-o4QvYScvUHcOtYw3kFX5Tc+BG51kmyvHahIKZDERNG0=",
-        "owner": "herdrdev",
-        "repo": "herdr-nix",
-        "rev": "602c88543e53f33273ea913b774dfea0a812ac12",
+        "lastModified": 1793292604,
+        "narHash": "sha256-1pxBDUAPc9oVDdkv+i0hNGeBz5CpzuH1gtljPpkFMJU=",
+        "owner": "Nutlope",
+        "repo": "hallmark",
+        "rev": "4f6a46c6dc325d40ab268c93e25c7b96676ebccd",
         "type": "github"
       },
       "original": {
-        "owner": "herdrdev",
-        "repo": "herdr-nix",
+        "owner": "Nutlope",
+        "repo": "hallmark",
         "type": "github"
       }
     },
@@ -332,6 +325,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1793341285,
+        "narHash": "sha256-Y1CiZ4SoBUjLQyQM/pY+rS2dXD3CHLPstF0lmOc73D4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1c89083e451e891152365b799595cf7790a43325",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1725534445,
@@ -371,7 +380,7 @@
     "popup-kak": {
       "inputs": {
         "crane": "crane",
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs_2",
         "rust-overlay": "rust-overlay",
         "treefmt-nix": "treefmt-nix"
@@ -395,11 +404,13 @@
         "claude-elixir-phoenix": "claude-elixir-phoenix",
         "claude-marketplace-elixir": "claude-marketplace-elixir",
         "claude-plugins-official": "claude-plugins-official",
+        "elephant-goldfish-model": "elephant-goldfish-model",
         "flake-parts": "flake-parts",
-        "herdr-nix": "herdr-nix",
+        "hallmark": "hallmark",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
         "popup-kak": "popup-kak",
         "tuios": "tuios"
@@ -427,21 +438,6 @@
       }
     },
     "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -512,16 +508,16 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1792258594,
-        "narHash": "sha256-1p9LCTwVuXQBFjWFpt9uvDorj/UvKh809RZy48prglU=",
+        "lastModified": 1793368780,
+        "narHash": "sha256-74V4F/xyDyWmJtmhIlpfSyAa0018SWw/dr2RsF4gGdM=",
         "owner": "Gaurav-Gosain",
         "repo": "tuios",
-        "rev": "f8b7820aa685b28295af46e1f32fb20b0d8461dc",
+        "rev": "789919466a01422cb26d93870e0fe86e719246c3",
         "type": "github"
       },
       "original": {
         "owner": "Gaurav-Gosain",
-        "ref": "v0.10.1",
+        "ref": "v0.12.0",
         "repo": "tuios",
         "type": "github"
       }

@@ -22,7 +22,6 @@
   home.packages = [
     pkgs.fuzzel
     pkgs.wezterm
-    inputs.herdr-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.nerd-fonts.symbols-only
     pkgs.symbola

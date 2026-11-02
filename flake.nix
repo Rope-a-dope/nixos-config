@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
@@ -15,11 +16,7 @@
     noctalia.url = "github:noctalia-dev/noctalia";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Herdr terminal workspace manager (Acer and Lenovo)
-    herdr-nix.url = "github:herdrdev/herdr-nix";
-    herdr-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    tuios.url = "github:Gaurav-Gosain/tuios/v0.10.1";
+    tuios.url = "github:Gaurav-Gosain/tuios/v0.12.0";
     tuios.inputs.nixpkgs.follows = "nixpkgs";
 
     # Kakoune popup support
@@ -39,9 +36,17 @@
       url = "github:bradleygolden/claude-marketplace-elixir";
       flake = false;
     };
+
+    elephant-goldfish-model = {
+      url = "github:google/elephant-goldfish-model";
+      flake = false;
+    };
+
+    hallmark = {
+      url = "github:Nutlope/hallmark";
+      flake = false;
+    };
   };
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; }
-      (inputs.import-tree ./nix);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./nix);
 }

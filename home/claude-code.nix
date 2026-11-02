@@ -3,7 +3,11 @@
 {
   programs.claude-code = {
     enable = true;
-    package = pkgs.claude-code;
+    package =
+      (import inputs.nixpkgs-unstable {
+        system = pkgs.stdenv.hostPlatform.system;
+        config.allowUnfree = true;
+      }).claude-code;
 
     plugins = [
       "${inputs.claude-plugins-official}/external_plugins/context7"
@@ -13,6 +17,8 @@
       "${inputs.claude-elixir-phoenix}/plugins/ecto"
       "${inputs.claude-elixir-phoenix}/plugins/lv"
       "${inputs.claude-marketplace-elixir}/plugins/ash"
+      "${inputs.elephant-goldfish-model}"
+      "${inputs.hallmark}"
     ];
   };
 }
