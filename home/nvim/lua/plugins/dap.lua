@@ -52,39 +52,49 @@ return {
     },
     config = function()
       local dap = require("dap")
-      local elixir_ls = vim.fn.resolve(vim.fn.exepath("elixir-ls"))
-      local elixir_ls_dir = vim.fn.fnamemodify(elixir_ls, ":h:h")
-
-      dap.adapters.mix_task = {
-        type = "executable",
-        command = elixir_ls_dir .. "/scripts/debug_adapter.sh",
-        args = {},
-      }
-
-      dap.configurations.elixir = {
-        {
-          type = "mix_task",
-          name = "Elixir: mix test",
-          request = "launch",
-          task = "test",
-          taskArgs = { "--trace" },
-          startApps = true,
-          projectDir = "${workspaceFolder}",
-          requireFiles = {
-            "test/**/test_helper.exs",
-            "test/**/*_test.exs",
-          },
-        },
-        {
-          type = "mix_task",
-          name = "Phoenix: phx.server",
-          request = "launch",
-          task = "phx.server",
-          projectDir = "${workspaceFolder}",
-        },
-      }
-
       local dapui = require("dapui")
+
+      -- Configure Elixir debugging only when ElixirLS is installed.
+      local elixir_ls = vim.fn.exepath("elixir-ls")
+
+      if elixir_ls ~= "" then
+        local elixir_ls_dir =
+          vim.fn.fnamemodify(vim.fn.resolve(elixir_ls), ":h:h")
+
+        local debug_adapter =
+          elixir_ls_dir .. "/scripts/debug_adapter.sh"
+
+        if vim.fn.executable(debug_adapter) == 1 then
+          dap.adapters.mix_task = {
+            type = "executable",
+            command = debug_adapter,
+            args = {},
+          }
+
+          dap.configurations.elixir = {
+            {
+              type = "mix_task",
+              name = "Elixir: mix test",
+              request = "launch",
+              task = "test",
+              taskArgs = { "--trace" },
+              startApps = true,
+              projectDir = "${workspaceFolder}",
+              requireFiles = {
+                "test/**/test_helper.exs",
+                "test/**/*_test.exs",
+              },
+            },
+            {
+              type = "mix_task",
+              name = "Phoenix: phx.server",
+              request = "launch",
+              task = "phx.server",
+              projectDir = "${workspaceFolder}",
+            },
+          }
+        end
+      end
 
       dapui.setup()
       require("nvim-dap-virtual-text").setup({})

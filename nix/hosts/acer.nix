@@ -14,6 +14,7 @@
       inputs.self.nixosModules.cosmicDesktop
       inputs.self.nixosModules.niriDesktop
       inputs.self.nixosModules.fcitx5
+      inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.tailscale
 
       ({ pkgs, ... }: {
@@ -52,6 +53,12 @@
           ];
         };
 
+        services.syncthing.guiAddress = "127.0.0.1:8385";
+
+        systemd.services.syncthing = {
+          requires = [ "mnt-smallv.mount" ];
+          after = [ "mnt-smallv.mount" ];
+        };
         # Home Manager
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
@@ -63,6 +70,7 @@
             ../../home/desktop.nix
             ../../home/cosmic.nix
             ../../home/development.nix
+            ../../home/editors.nix
           ];
         };
 

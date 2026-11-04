@@ -2,7 +2,12 @@
 
 {
   flake.nixosModules.acerHardware =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
 
     {
       imports = [
@@ -30,6 +35,12 @@
         branch = "legacy_580";
         open = false;
         modesetting.enable = true;
+      };
+
+      fileSystems."/mnt/smallv" = {
+        device = "/dev/disk/by-uuid/02510a50-01b0-462c-a1a3-736a40674b5e";
+        fsType = "ext4";
+        options = [ "nofail" ];
       };
     };
 }

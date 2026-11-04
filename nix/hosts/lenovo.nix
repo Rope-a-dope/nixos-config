@@ -65,6 +65,7 @@
             ../../home/desktop.nix
             ../../home/cosmic.nix
             ../../home/development.nix
+            ../../home/editors.nix
           ];
         };
 

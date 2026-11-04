@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   home.username = "smallv";
@@ -6,10 +11,6 @@
   home.stateVersion = "26.05";
 
   xdg.configFile."starship.toml".source = ./starship.toml;
-
-  xdg.configFile."nvim".source =
-  config.lib.file.mkOutOfStoreSymlink
-    "${config.home.homeDirectory}/nixos-config/home/nvim";
 
   programs.fish = {
     enable = true;
@@ -82,7 +83,6 @@
     fzf
     tmux
     ripgrep
-    satty
     ncdu
     dust
     procs

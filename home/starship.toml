@@ -5,7 +5,7 @@ scan_timeout = 10
 palette = "catppuccin_mocha"
 
 # Two-line lean prompt with a left frame.
-format = "$os $directory $git_branch$git_status$line_break$character"
+format = "$os $hostname $directory $git_branch$git_status$line_break$character"
 right_format = "$cmd_duration $time"
 
 [os]
@@ -20,6 +20,11 @@ NixOS = ""
 success_symbol = "[❯](bold green)"
 error_symbol = "[❯](bold red)"
 vimcmd_symbol = "[❮](bold lavender)"
+
+[hostname]
+ssh_only = false
+format = "[$hostname]($style) "
+style = "bold green"
 
 [directory]
 style = "bold blue"

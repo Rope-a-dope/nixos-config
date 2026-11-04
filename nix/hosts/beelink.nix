@@ -6,7 +6,16 @@
 
     modules = [
       inputs.self.nixosModules.beelinkHardware
+      inputs.home-manager.nixosModules.home-manager
+      inputs.self.nixosModules.sharedPackages
+      inputs.self.nixosModules.kakouneEditor
+      inputs.self.nixosModules.adguardhome
+      inputs.self.nixosModules.caddy
+      inputs.self.nixosModules.jellyfin
+      inputs.self.nixosModules.qbittorrent
       inputs.self.nixosModules.tailscale
+      inputs.self.nixosModules.syncthing
+      inputs.self.nixosModules.homepage
 
       ({ pkgs, ... }: {
         nix.settings.experimental-features = [
@@ -34,7 +43,23 @@
           ];
         };
 
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = { inherit inputs; };
+
+        home-manager.users.smallv = {
+          imports = [
+            ../../home/common.nix
+            ../../home/editors.nix
+          ];
+        };
+
         programs.fish.enable = true;
+
+        systemd.services.syncthing = {
+          requires = [ "mnt-Backup.mount" ];
+          after = [ "mnt-Backup.mount" ];
+        };
 
         services.openssh = {
           enable = true;
@@ -44,6 +69,12 @@
           };
         };
 
+        services.tailscale = {
+          useRoutingFeatures = "server";
+          extraSetFlags = [
+            "--advertise-routes=192.168.68.0/24"
+          ];
+        };
         system.stateVersion = "26.05";
       })
     ];

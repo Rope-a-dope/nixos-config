@@ -4,6 +4,9 @@ return {
     opts = {
       servers = {
         tailwindcss = {
+          -- Use the Nix-managed executable, not Mason.
+          mason = false,
+
           filetypes = {
             "html",
             "css",
