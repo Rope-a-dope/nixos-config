@@ -15,6 +15,7 @@
       inputs.self.nixosModules.cosmicDesktop
       inputs.self.nixosModules.niriDesktop
       inputs.self.nixosModules.fcitx5
+      inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.tailscale
 
       ({ pkgs, ... }: {
