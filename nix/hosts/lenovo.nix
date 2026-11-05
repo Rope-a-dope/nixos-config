@@ -7,6 +7,7 @@
     modules = [
       inputs.self.nixosModules.broadcomWifi
       inputs.self.nixosModules.lenovoHardware
+      inputs.self.nixosModules.sops
       inputs.home-manager.nixosModules.home-manager
       inputs.self.nixosModules.sharedPackages
       inputs.self.nixosModules.podman
@@ -81,6 +82,7 @@
         console.keyMap = "us";
 
         # Set this to the release used for the initial Lenovo installation.
+        sops.age.keyFile = "/var/lib/sops-nix/key.txt";
         system.stateVersion = "26.05";
       })
     ];

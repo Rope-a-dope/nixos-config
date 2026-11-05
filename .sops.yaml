@@ -1,0 +1,12 @@
+keys:
+  - &beelink age1mngpeqyz86p3tllr5cw68xg0jmypujkgz6a63du96ljuwdyua4as2ggexj
+  - &acer age1pk2je8uv49n0mwsckdkdfw0rtv8n2nshdqsswcpjskdpawhgqdlspv6mgq
+  - &lenovo age1cv0vdjjs3hpwsk95ytnu0emhf4ex335xx890efdy2ngykpskqppqzsglnk
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *beelink
+          - *acer
+          - *lenovo

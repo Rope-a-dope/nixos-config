@@ -4,20 +4,26 @@
   flake.nixosConfigurations.beelink = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
+    specialArgs = { inherit inputs; };
+
     modules = [
       inputs.self.nixosModules.beelinkHardware
+      inputs.self.nixosModules.sops
       inputs.home-manager.nixosModules.home-manager
       inputs.self.nixosModules.sharedPackages
       inputs.self.nixosModules.kakouneEditor
       inputs.self.nixosModules.adguardhome
       inputs.self.nixosModules.caddy
+      inputs.self.nixosModules.immich
       inputs.self.nixosModules.jellyfin
+      inputs.self.nixosModules.paperless
       inputs.self.nixosModules.qbittorrent
+      inputs.self.nixosModules.resticBackup
       inputs.self.nixosModules.tailscale
       inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.homepage
 
-      ({ pkgs, ... }: {
+      ({ config, pkgs, ... }: {
         nix.settings.experimental-features = [
           "nix-command"
           "flakes"
@@ -75,6 +81,23 @@
             "--advertise-routes=192.168.68.0/24"
           ];
         };
+
+        sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+
+        sops.secrets."restic-repository-password" = {
+          sopsFile = ../../secrets/secrets.yaml;
+          key = "restic/repository_password";
+        };
+
+        sops.secrets."paperless-db-password" = {
+          sopsFile = ../../secrets/secrets.yaml;
+          key = "paperless/db_password";
+        };
+
+        sops.templates."paperless-environment".content = ''
+          PAPERLESS_DBPASS=${config.sops.placeholder."paperless-db-password"}
+        '';
+
         system.stateVersion = "26.05";
       })
     ];

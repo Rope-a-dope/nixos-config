@@ -6,6 +6,7 @@
 
     modules = [
       inputs.self.nixosModules.acerHardware
+      inputs.self.nixosModules.sops
       inputs.home-manager.nixosModules.home-manager
       inputs.self.nixosModules.sharedPackages
       inputs.self.nixosModules.podman
@@ -87,6 +88,7 @@
         console.keyMap = "us";
 
         # Preserve existing installation state
+        sops.age.keyFile = "/var/lib/sops-nix/key.txt";
         system.stateVersion = "26.05";
       })
     ];

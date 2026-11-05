@@ -9,26 +9,42 @@
       dataDir = "/var/lib/caddy";
 
       extraConfig = ''
-        jellyfin.home.arpa {
-          tls internal
-          reverse_proxy 127.0.0.1:8096
-        }
-
-        qbittorrent.home.arpa {
-          tls internal
-          reverse_proxy 127.0.0.1:8080
-        }
-
         adguard.home.arpa {
+          bind 192.168.68.133
           tls internal
           reverse_proxy 127.0.0.1:3000
         }
 
+        immich.home.arpa {
+          bind 192.168.68.133
+          tls internal
+          reverse_proxy 127.0.0.1:2283
+        }
+
+        jellyfin.home.arpa {
+          bind 192.168.68.133
+          tls internal
+          reverse_proxy 127.0.0.1:8096
+        }
+
+        paperless.home.arpa {
+          bind 192.168.68.133
+          tls internal
+          reverse_proxy 127.0.0.1:28981
+        }
+
+        qbittorrent.home.arpa {
+          bind 192.168.68.133
+          tls internal
+          reverse_proxy 127.0.0.1:8080
+        }
+
         syncthing.home.arpa {
+          bind 192.168.68.133
           tls internal
           reverse_proxy 127.0.0.1:8384 {
             header_up Host localhost
-	  }
+          }
         }
       '';
     };

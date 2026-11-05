@@ -1,1 +1,3 @@
 /result
+*.ts.net.key
+*.ts.net.crt
