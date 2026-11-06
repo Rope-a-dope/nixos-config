@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
   flake.nixosModules.diskoLenovo = {
@@ -36,5 +36,7 @@
         };
       };
     };
+
+    fileSystems."/boot".device = lib.mkForce "/dev/disk/by-uuid/7216-1DB0";
   };
 }

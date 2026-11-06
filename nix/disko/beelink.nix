@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
   flake.nixosModules.diskoBeelink = {
@@ -38,5 +38,10 @@
         };
       };
     };
+    fileSystems."/".device =
+      lib.mkForce "/dev/disk/by-uuid/c5a1a9e9-0966-4f8e-b0c5-abec5ecab1a2";
+
+    fileSystems."/boot".device =
+      lib.mkForce "/dev/disk/by-uuid/385A-5D73";
   };
 }

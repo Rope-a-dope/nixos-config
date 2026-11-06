@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
   flake.nixosModules.diskoAcer = {
@@ -38,5 +38,8 @@
         };
       };
     };
+    fileSystems."/".device = lib.mkForce "/dev/disk/by-uuid/290bbb3c-7f8e-42e7-8e85-cd7f546fb1c7";
+
+    fileSystems."/boot".device = lib.mkForce "/dev/disk/by-uuid/8DF8-7F21";
   };
 }
