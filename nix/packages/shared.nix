@@ -6,6 +6,8 @@
       gcc
       git
       fastfetch
+      flirt
+      moreutils
       neovim
       nixfmt
       tree
