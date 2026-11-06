@@ -36,6 +36,7 @@
         };
       };
     };
+    fileSystems."/".device = lib.mkForce "/dev/disk/by-uuid/b31e58be-4393-468a-b711-84813a0efd3a";
 
     fileSystems."/boot".device = lib.mkForce "/dev/disk/by-uuid/7216-1DB0";
   };
