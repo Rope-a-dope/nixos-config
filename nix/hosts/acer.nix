@@ -69,10 +69,11 @@
         home-manager.users.smallv = {
           imports = [
             ../../home/common.nix
-            ../../home/desktop.nix
             ../../home/cosmic.nix
+            ../../home/desktop.nix
             ../../home/development.nix
             ../../home/editors.nix
+            ../../home/tuios.nix
           ];
         };
 

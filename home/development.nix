@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -29,7 +28,6 @@
     tree-sitter
     stylua
     lazygit
-    inputs.tuios.packages.${pkgs.stdenv.hostPlatform.system}.tuios
     lua-language-server
     tailwindcss-language-server
 

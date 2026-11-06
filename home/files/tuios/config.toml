@@ -1,0 +1,19 @@
+[appearance]
+# Use the terminal's own color palette.
+theme = ""
+border_style = "rounded"
+shared_borders = false
+tiling_scheme = "spiral"
+new_window_inherit_cwd = true
+
+# Splits from an SSH pane should follow that SSH connection.
+new_window_follow_ssh = true
+
+[startup]
+daemon = true
+tiled = true
+layout = "bsp"
+open_default_window = false
+
+[agents]
+enabled = true
