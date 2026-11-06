@@ -5,6 +5,7 @@
     system = "x86_64-linux";
 
     modules = [
+      inputs.self.nixosModules.diskoLenovo
       inputs.self.nixosModules.broadcomWifi
       inputs.self.nixosModules.lenovoHardware
       inputs.self.nixosModules.sops

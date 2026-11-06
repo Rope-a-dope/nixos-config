@@ -5,6 +5,7 @@
     system = "x86_64-linux";
 
     modules = [
+      inputs.self.nixosModules.diskoAcer
       inputs.self.nixosModules.acerHardware
       inputs.self.nixosModules.sops
       inputs.home-manager.nixosModules.home-manager

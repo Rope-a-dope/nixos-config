@@ -7,6 +7,7 @@
     specialArgs = { inherit inputs; };
 
     modules = [
+      inputs.self.nixosModules.diskoBeelink
       inputs.self.nixosModules.beelinkHardware
       inputs.self.nixosModules.sops
       inputs.home-manager.nixosModules.home-manager
