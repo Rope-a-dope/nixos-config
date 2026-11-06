@@ -30,7 +30,11 @@
       fileSystems."/mnt/Backup" = {
         device = "/dev/disk/by-uuid/8408e456-a2ef-4d59-9164-64e22e146cbf";
         fsType = "ext4";
-        options = [ "nofail" ];
+        options = [
+          "nofail"
+          "x-systemd.automount"
+          "x-systemd.device-timeout=60s"
+        ];
       };
 
       fileSystems."/mnt/Media" = {
