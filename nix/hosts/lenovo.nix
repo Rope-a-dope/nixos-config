@@ -56,6 +56,11 @@
             "wheel"
             "networkmanager"
           ];
+
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKL382w1dTlWyWU6N23PzvZ07ZPhBdfif0S57gLKFCUN ropeadope2021@gmail.com"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOjjHxpBIjgKh13gY3DQoq/wvN0hLWoseqjJ91sdwdnp ropeadope2021@gmail.com"
+          ];
         };
 
         home-manager.useGlobalPkgs = true;
@@ -78,6 +83,15 @@
         services.pipewire = {
           enable = true;
           pulse.enable = true;
+        };
+
+        services.openssh = {
+          enable = true;
+          settings = {
+            PasswordAuthentication = false;
+            KbdInteractiveAuthentication = false;
+            PermitRootLogin = "no";
+          };
         };
 
         i18n.defaultLocale = "en_US.UTF-8";

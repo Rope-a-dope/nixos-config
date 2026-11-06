@@ -53,6 +53,10 @@
             "wheel"
             "networkmanager"
           ];
+
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINHDINAaY/pCQS4VsiHRqzWV9dRYgnpNC/oZTvTElpAl ropeadope2021@gmail.com"
+          ];
         };
 
         services.syncthing.guiAddress = "127.0.0.1:8385";
@@ -83,6 +87,15 @@
         services.pipewire = {
           enable = true;
           pulse.enable = true;
+        };
+
+        services.openssh = {
+          enable = true;
+          settings = {
+            PasswordAuthentication = false;
+            KbdInteractiveAuthentication = false;
+            PermitRootLogin = "no";
+          };
         };
 
         # Locale
