@@ -7,6 +7,7 @@
       mpv
       qimgv
       gthumb
+      wl-clipboard
     ];
   };
 }

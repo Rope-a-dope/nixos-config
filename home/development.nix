@@ -47,5 +47,6 @@
 
     inotify-tools
     nodejs
+    kakounePlugins.hop-kak
   ];
 }

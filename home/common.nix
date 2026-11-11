@@ -76,6 +76,10 @@
     enableFishIntegration = true;
   };
 
+  programs.nushell = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
     bat
     eza
