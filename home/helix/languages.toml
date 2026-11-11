@@ -1,0 +1,22 @@
+[[language]]
+name = "elixir"
+language-servers = ["elixir-ls"]
+auto-format = true
+formatter = { command = "mix", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
+
+[[language]]
+name = "heex"
+language-servers = ["elixir-ls"]
+auto-format = true
+indent = { tab-width = 2, unit = " " }
+formatter = { command = "mix", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
+
+[[language]]
+name = "nix"
+auto-format = true
+formatter = { command = "nixfmt" }
+
+[[language]]
+name = "rust"
+auto-format = true
+formatter = { command = "rustfmt" }

@@ -26,6 +26,10 @@
     gcc
     gnumake
     tree-sitter
+    nil
+    rust-analyzer
+    nixfmt
+    rustfmt
     stylua
     lazygit
     lua-language-server

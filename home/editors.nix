@@ -48,6 +48,9 @@ let
     };
 in
 {
+  # Helix configuration
+  xdg.configFile."helix".source = ./helix;
+
   # Neovim configuration
   xdg.configFile."nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home/nvim";
@@ -73,6 +76,7 @@ in
     ./kak-tree-sitter/config.toml;
 
   home.packages = [
+    pkgs.helix
     pkgs.python3
     pkgs.luajit
     kakouneKakeidoscope

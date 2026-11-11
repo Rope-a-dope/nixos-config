@@ -1,0 +1,25 @@
+theme = "everforest_dark"
+
+[editor]
+line-number = "relative"
+mouse = true
+bufferline = "multiple"
+color-modes = true
+auto-pairs = true
+completion-trigger-len = 2
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+render = true
+character = "┊"
+skip-levels = 1
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+auto-signature-help = true
