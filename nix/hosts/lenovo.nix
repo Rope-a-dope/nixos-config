@@ -75,6 +75,7 @@
             ../../home/development.nix
             ../../home/editors.nix
             ../../home/tuios.nix
+            ../../home/voxtype.nix
           ];
         };
 

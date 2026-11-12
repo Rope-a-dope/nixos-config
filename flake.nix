@@ -25,7 +25,10 @@
     tuios.inputs.nixpkgs.follows = "nixpkgs";
 
     # Kakoune popup support
-    popup-kak.url = "github:enricozb/popup.kak";
+    popup-kak = {
+      url = "github:enricozb/popup.kak";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     claude-plugins-official = {
       url = "github:anthropics/claude-plugins-official";
@@ -54,6 +57,11 @@
 
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    voxtype = {
+      url = "github:peteonrails/voxtype/v1.2.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

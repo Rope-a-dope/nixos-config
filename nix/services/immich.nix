@@ -6,7 +6,7 @@
       enable = true;
 
       package =
-        inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.immich;
+        inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.immich;
 
       mediaLocation = "/mnt/Backup/Photos/Immich";
 
