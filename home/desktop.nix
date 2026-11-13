@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.noctalia.homeModules.default
+    ./zathura.nix
   ];
 
   programs.noctalia = {
@@ -31,6 +32,9 @@
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.nerd-fonts.symbols-only
     pkgs.symbola
+    pkgs.stirling-pdf-desktop
+    pkgs.zathura
+    pkgs.zathuraPkgs.zathura_pdf_mupdf
   ];
 
   xdg.configFile."wezterm/wezterm.lua".source = ./wezterm.lua;
