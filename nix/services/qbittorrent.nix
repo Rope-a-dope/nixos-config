@@ -5,7 +5,7 @@
     services.qbittorrent = {
       enable = true;
       webuiPort = 8080;
-      torrentingPort = 6881;
+      torrentingPort = 49160;
       openFirewall = false;
 
       extraArgs = [
@@ -14,8 +14,8 @@
     };
 
     networking.firewall = {
-      allowedTCPPorts = [ 6881 ];
-      allowedUDPPorts = [ 6881 ];
+      allowedTCPPorts = [ 49160 ];
+      allowedUDPPorts = [ 49160 ];
     };
   };
 }
