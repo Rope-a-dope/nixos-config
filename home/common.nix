@@ -6,6 +6,10 @@
 }:
 
 {
+  imports = [
+    ./yazi
+  ];
+
   home.username = "smallv";
   home.homeDirectory = "/home/smallv";
   home.stateVersion = "26.05";
@@ -57,11 +61,6 @@
   };
 
   programs.starship = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
-  programs.yazi = {
     enable = true;
     enableFishIntegration = true;
   };
