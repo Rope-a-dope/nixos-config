@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -22,35 +23,37 @@
     fish_add_path $HOME/.config/emacs/bin
   '';
 
-  home.packages = with pkgs; [
-    gcc
-    gnumake
-    tree-sitter
-    nil
-    rust-analyzer
-    nixfmt
-    rustfmt
-    stylua
-    lazygit
-    lua-language-server
-    tailwindcss-language-server
+  home.packages =
+    (with pkgs; [
+      gcc
+      gnumake
+      tree-sitter
+      nil
+      rust-analyzer
+      nixfmt
+      rustfmt
+      stylua
+      lazygit
+      lua-language-server
+      tailwindcss-language-server
 
-    emacs-pgtk
-    discount
-    shellcheck
-    unzip
-    wget
+      emacs-pgtk
+      discount
+      shellcheck
+      unzip
+      wget
 
-    beam29Packages.erlang
-    beam29Packages.elixir_1_20
-    (beam29Packages.elixir-ls.override {
-      elixir = beam29Packages.elixir_1_20;
-    })
-    beam29Packages.hex
-    beam29Packages.rebar3
-
-    inotify-tools
-    nodejs
-    kakounePlugins.hop-kak
-  ];
+      inotify-tools
+      nodejs
+      kakounePlugins.hop-kak
+    ])
+    ++ (with pkgs-unstable.beam29Packages; [
+      erlang
+      elixir_1_20
+      (elixir-ls.override {
+        elixir = elixir_1_20;
+      })
+      hex
+      rebar3
+    ]);
 }

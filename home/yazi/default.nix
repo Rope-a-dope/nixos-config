@@ -1,21 +1,13 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, pkgs-unstable, ... }:
 
-let
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-  inherit (unstable) yazi yaziPlugins;
-in
 {
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
-    package = yazi;
+    package = pkgs-unstable.yazi;
 
     plugins = {
-      inherit (yaziPlugins)
+      inherit (pkgs-unstable.yaziPlugins)
         bookmarks
         bypass
         ouch
@@ -25,12 +17,12 @@ in
         ;
 
       git = {
-        package = yaziPlugins.git;
+        package = pkgs-unstable.yaziPlugins.git;
         setup = true;
       };
 
       githead = {
-        package = yaziPlugins.githead;
+        package = pkgs-unstable.yaziPlugins.githead;
         setup = true;
       };
     };

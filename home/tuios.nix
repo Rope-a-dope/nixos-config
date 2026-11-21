@@ -1,8 +1,8 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, pkgs-unstable, ... }:
 
 {
   home.packages = [
-    inputs.tuios.packages.${pkgs.stdenv.hostPlatform.system}.tuios
+    pkgs-unstable.tuios
   ];
 
   xdg.configFile."tuios/config.toml".source =

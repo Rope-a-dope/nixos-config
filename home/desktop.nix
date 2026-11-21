@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  pkgs-unstable,
   lib,
   ...
 }:
@@ -21,20 +22,20 @@
   # Start Noctalia only inside a Niri session, not COSMIC.
   systemd.user.services.noctalia.Service.ExecCondition =
     "${pkgs.writeShellScript "noctalia-niri-only" ''
-      test \"''${XDG_CURRENT_DESKTOP:-}\" = \"niri\" ||
-      test \"''${XDG_CURRENT_DESKTOP:-}\" = \"Niri\"
+      test "''${XDG_CURRENT_DESKTOP:-}" = "niri" ||
+      test "''${XDG_CURRENT_DESKTOP:-}" = "Niri"
     ''}";
 
   home.packages = [
     pkgs.fuzzel
-    pkgs.wezterm
-    pkgs.satty
+    pkgs-unstable.wezterm
+    pkgs-unstable.satty
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.nerd-fonts.symbols-only
     pkgs.symbola
     pkgs.stirling-pdf-desktop
-    pkgs.zathura
-    pkgs.zathuraPkgs.zathura_pdf_mupdf
+    pkgs-unstable.zathura
+    pkgs-unstable.zathuraPkgs.zathura_pdf_mupdf
   ];
 
   xdg.configFile."wezterm/wezterm.lua".source = ./wezterm.lua;

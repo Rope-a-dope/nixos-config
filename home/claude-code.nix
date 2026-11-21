@@ -1,13 +1,9 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs-unstable, ... }:
 
 {
   programs.claude-code = {
     enable = true;
-    package =
-      (import inputs.nixpkgs-unstable {
-        system = pkgs.stdenv.hostPlatform.system;
-        config.allowUnfree = true;
-      }).claude-code;
+    package = pkgs-unstable.claude-code;
 
     plugins = [
       "${inputs.claude-plugins-official}/external_plugins/context7"

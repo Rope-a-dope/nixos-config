@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   inputs,
   ...
 }:
@@ -79,17 +80,20 @@
     enable = true;
   };
 
-  home.packages = with pkgs; [
-    bat
-    eza
-    fd
-    fzf
-    tmux
-    ripgrep
-    ncdu
-    dust
-    procs
-    jq
-    yq-go
-  ];
+  home.packages =
+    (with pkgs; [
+      bat
+      eza
+      fd
+      fzf
+      tmux
+      ripgrep
+      dust
+      procs
+      jq
+      yq-go
+    ])
+    ++ [
+      pkgs-unstable.ncdu
+    ];
 }

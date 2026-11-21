@@ -21,9 +21,6 @@
     noctalia.url = "github:noctalia-dev/noctalia";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
-    tuios.url = "github:Gaurav-Gosain/tuios/v0.12.0";
-    tuios.inputs.nixpkgs.follows = "nixpkgs";
-
     # Kakoune popup support
     popup-kak = {
       url = "github:enricozb/popup.kak";
