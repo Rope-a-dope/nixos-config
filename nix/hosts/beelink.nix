@@ -18,6 +18,7 @@
       inputs.self.nixosModules.immich
       inputs.self.nixosModules.jellyfin
       inputs.self.nixosModules.paperless
+      inputs.self.nixosModules.postgresql
       inputs.self.nixosModules.qbittorrent
       inputs.self.nixosModules.resticBackup
       inputs.self.nixosModules.tailscale
