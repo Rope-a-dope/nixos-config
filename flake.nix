@@ -52,6 +52,16 @@
       flake = false;
     };
 
+    impeccable = {
+      url = "github:pbakaus/impeccable";
+      flake = false;
+    };
+
+    superpowers = {
+      url = "github:obra/superpowers";
+      flake = false;
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,81 +1,75 @@
 { ... }:
 
 {
-  flake.nixosModules.resticBackup = { inputs, pkgs, ... }:
-    let
-      system = pkgs.stdenv.hostPlatform.system;
-      postgresql18 =
-        inputs.nixpkgs-unstable.legacyPackages.${system}.postgresql_18;
-    in
-    {
-      services.restic.backups.server = {
-        package = pkgs.restic;
-        user = "root";
+  flake.nixosModules.resticBackup = { pkgs, ... }: {
+    services.restic.backups.server = {
+      package = pkgs.restic;
+      user = "root";
 
-        repository = "/mnt/Backup/Backups/Immich";
-        passwordFile = "/run/secrets/restic-repository-password";
-        initialize = true;
+      repository = "/mnt/Backup/Backups/Immich";
+      passwordFile = "/run/secrets/restic-repository-password";
+      initialize = true;
 
-        paths = [
-          "/mnt/Backup/Photos/Immich"
-          "/var/lib/immich-backup"
-          "/mnt/Backup/Documents/Paperless"
-          "/var/lib/paperless-backup"
-        ];
+      paths = [
+        "/mnt/Backup/Photos/Immich"
+        "/var/lib/immich-backup"
+        "/mnt/Backup/Documents/Paperless"
+        "/var/lib/paperless-backup"
+      ];
 
-        backupPrepareCommand = ''
-          install -d -o postgres -g postgres -m 0700 /var/lib/immich-backup
-          install -d -o postgres -g postgres -m 0700 /var/lib/paperless-backup
+      backupPrepareCommand = ''
+        install -d -o postgres -g postgres -m 0700 /var/lib/immich-backup
+        install -d -o postgres -g postgres -m 0700 /var/lib/paperless-backup
 
-          runuser -u postgres -- pg_dump \
-            --format=custom \
-            immich \
-            --file=/var/lib/immich-backup/immich.dump
+        runuser -u postgres -- pg_dump \
+          --format=custom \
+          immich \
+          --file=/var/lib/immich-backup/immich.dump
 
-          runuser -u postgres -- pg_dump \
-            --format=custom \
-            paperless \
-            --file=/var/lib/paperless-backup/paperless.dump
+        runuser -u postgres -- pg_dump \
+          --format=custom \
+          paperless \
+          --file=/var/lib/paperless-backup/paperless.dump
 
-          runuser -u postgres -- pg_dumpall \
-            --globals-only \
-            --file=/var/lib/immich-backup/globals.sql
-        '';
+        runuser -u postgres -- pg_dumpall \
+          --globals-only \
+          --file=/var/lib/immich-backup/globals.sql
+      '';
 
-        backupCleanupCommand = ''
-          rm -f /var/lib/immich-backup/immich.dump
-          rm -f /var/lib/immich-backup/globals.sql
-          rm -f /var/lib/paperless-backup/paperless.dump
-        '';
+      backupCleanupCommand = ''
+        rm -f /var/lib/immich-backup/immich.dump
+        rm -f /var/lib/immich-backup/globals.sql
+        rm -f /var/lib/paperless-backup/paperless.dump
+      '';
 
-        timerConfig = {
-          OnCalendar = "daily";
-          Persistent = true;
-        };
-
-        pruneOpts = [
-          "--keep-daily 7"
-          "--keep-weekly 5"
-          "--keep-monthly 12"
-        ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
       };
 
-      systemd.services.restic-backups-server = {
-        requires = [
-          "mnt-Backup.mount"
-          "postgresql.target"
-        ];
-
-        after = [
-          "mnt-Backup.mount"
-          "postgresql.target"
-        ];
-
-        path = [
-          pkgs.util-linux
-          postgresql18
-          pkgs.coreutils
-        ];
-      };
+      pruneOpts = [
+        "--keep-daily 7"
+        "--keep-weekly 5"
+        "--keep-monthly 12"
+      ];
     };
+
+    systemd.services.restic-backups-server = {
+      requires = [
+        "mnt-Backup.mount"
+        "postgresql.target"
+      ];
+
+      after = [
+        "mnt-Backup.mount"
+        "postgresql.target"
+      ];
+
+      path = [
+        pkgs.util-linux
+        pkgs.postgresql_18
+        pkgs.coreutils
+      ];
+    };
+  };
 }

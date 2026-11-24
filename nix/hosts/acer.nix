@@ -88,8 +88,6 @@
           ];
         };
 
-        programs.fish.enable = true;
-
         # Audio
         services.pipewire = {
           enable = true;

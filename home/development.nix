@@ -26,15 +26,16 @@
   home.packages =
     (with pkgs; [
       gcc
+      gh
       gnumake
       tree-sitter
-      nil
-      rust-analyzer
+      pkgs-unstable.nil
+      pkgs-unstable.rust-analyzer
+      pkgs-unstable.lua-language-server
       nixfmt
       rustfmt
       stylua
       lazygit
-      lua-language-server
       tailwindcss-language-server
 
       emacs-pgtk

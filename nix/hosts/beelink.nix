@@ -68,12 +68,11 @@
           ];
         };
 
-        programs.fish.enable = true;
-
         systemd.services.syncthing = {
           requires = [ "mnt-Backup.mount" ];
           after = [ "mnt-Backup.mount" ];
         };
+
 
         services.openssh = {
           enable = true;

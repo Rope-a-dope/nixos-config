@@ -15,6 +15,8 @@
       "${inputs.claude-marketplace-elixir}/plugins/ash"
       "${inputs.elephant-goldfish-model}"
       "${inputs.hallmark}"
+      "${inputs.impeccable}/plugin"
+      "${inputs.superpowers}"
     ];
   };
 }

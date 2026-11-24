@@ -59,11 +59,13 @@
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;
+    package = pkgs-unstable.atuin;
   };
 
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
+    package = pkgs-unstable.starship;
   };
 
   programs.zoxide = {
@@ -78,6 +80,7 @@
 
   programs.nushell = {
     enable = true;
+    package = pkgs-unstable.nushell;
   };
 
   home.packages =
